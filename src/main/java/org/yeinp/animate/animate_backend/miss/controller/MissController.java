@@ -38,7 +38,7 @@ public class MissController {
     }
 
     @GetMapping("/animal/miss_care/modal/{mcNo}")
-    public ResponseEntity<List<MissCareImgDto>> getMissCareByMcNo(@PathVariable Long mcNo, HttpSession session, Model model){
+    public ResponseEntity<List<MissCareImgDto>> getMissCareByMcNo(@PathVariable Long mcNo){
         List<MissCareImgDto> missCareImgDtoList = missService.mcImgUrlByMcNo(mcNo);
         return ResponseEntity.ok(missCareImgDtoList);
     }

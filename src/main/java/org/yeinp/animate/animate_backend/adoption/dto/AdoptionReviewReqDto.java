@@ -20,5 +20,5 @@ public class AdoptionReviewReqDto {
 
     private String arContent;
 
-    private String mcImgUrl;
+    private String userNickName;
 }

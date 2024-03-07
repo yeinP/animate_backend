@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewDto;
 import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewReqDto;
 import org.yeinp.animate.animate_backend.adoption.dto.S3ArFileDto;
 import org.yeinp.animate.animate_backend.adoption.service.AdoptionService;
@@ -29,13 +30,13 @@ public class AwsS3ArController {
     AdoptionService adoptionService;
 
     @PostMapping(value="/upload/adoption/review", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadMissFile(@RequestParam(value = "files") List<MultipartFile> multipartFiles, @ModelAttribute AdoptionReviewReqDto adoptionReviewReqDto, HttpSession session){
+    public ResponseEntity<?> uploadMissFile(@RequestParam(value = "files") List<MultipartFile> multipartFiles, @ModelAttribute AdoptionReviewDto adoptionReviewDto, HttpSession session){
         Long userNo = (Long) session.getAttribute("userNo");
         List<S3ArFileDto> s3ArFileDtoList = awsS3ArService.uploadImageAdotion(multipartFiles);
 
         List<String> fileUrls = s3ArFileDtoList.stream().map(S3ArFileDto::getFileUrl).collect(Collectors.toList());
-        adoptionReviewReqDto.setUserNo(userNo);
-        int result = adoptionService.writeArArticle(adoptionReviewReqDto, fileUrls);
+        adoptionReviewDto.setUserNo(userNo);
+        int result = adoptionService.writeArArticle(adoptionReviewDto, fileUrls);
         return ResponseEntity.ok(fileUrls);
     }
 
