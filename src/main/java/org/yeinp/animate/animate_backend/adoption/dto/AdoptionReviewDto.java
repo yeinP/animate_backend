@@ -21,4 +21,5 @@ public class AdoptionReviewDto {
 
     private String arContent;
 
+
 }

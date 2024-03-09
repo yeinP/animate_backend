@@ -27,6 +27,7 @@ public class AdoptionReview {
 
     private String arContent;
 
+
     @OneToMany(mappedBy = "adoptionReview", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AdoptionImg> adoptionReviewImgList;
 }
