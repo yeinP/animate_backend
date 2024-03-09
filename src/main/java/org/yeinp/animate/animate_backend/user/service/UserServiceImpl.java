@@ -55,15 +55,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public boolean checkUserIdDuplicate(String userId) {
-//        return userRepository.existsByUserId(userId);
-//    }
-//
-//    @Override
-//    public boolean checkUserNicknameDuplicate(String userNickName) {
-//        return userRepository.existsByUserNickname(userNickName);
-//    }
+
 
 
 }

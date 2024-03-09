@@ -1,6 +1,7 @@
 package org.yeinp.animate.animate_backend.adoption.repository;
 
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,9 @@ public interface AdoptionRepository extends JpaRepository<AdoptionReview, Long> 
             "a.arNo, a.arRegdate, a.userNo, a.arTitle, a.arContent, u.userNickname) " +
             "FROM AdoptionReview a INNER JOIN User u ON u.userNo = a.userNo")
     List<AdoptionReviewReqDto> getArList();
+
+
+
+
 
 }

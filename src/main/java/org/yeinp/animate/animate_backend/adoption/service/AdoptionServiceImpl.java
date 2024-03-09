@@ -2,17 +2,17 @@ package org.yeinp.animate.animate_backend.adoption.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.yeinp.animate.animate_backend.adoption.dto.AdoptionImgDto;
-import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewDto;
-import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewReqDto;
-import org.yeinp.animate.animate_backend.adoption.dto.ImgUrlDto;
+import org.yeinp.animate.animate_backend.adoption.dto.*;
 import org.yeinp.animate.animate_backend.adoption.repository.AdoptionImgRepository;
 import org.yeinp.animate.animate_backend.adoption.repository.AdoptionRepository;
 import org.yeinp.animate.animate_backend.entity.AdoptionImg;
 import org.yeinp.animate.animate_backend.entity.AdoptionReview;
+import org.yeinp.animate.animate_backend.entity.User;
+import org.yeinp.animate.animate_backend.user.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +25,9 @@ public class AdoptionServiceImpl implements AdoptionService{
 
     @Autowired
     AdoptionImgRepository adoptionImgRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     @Override
@@ -46,6 +49,21 @@ public class AdoptionServiceImpl implements AdoptionService{
         List<AdoptionImg> resultList = adoptionImgRepository.findAll();
         return resultList.stream()
                 .map(this::entityToImgUrlDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<AdoptionArticleDto> getAdoptionReviewWithImages(Long arNo) {
+        Optional<AdoptionReview> adoptionReviewOptional = adoptionRepository.findById(arNo);
+
+        return adoptionReviewOptional.map(adoptionReview -> {
+            User user = userRepository.findById(adoptionReview.getUserNo()).orElse(null);
+
+            if (user != null) {
+                return entityToArticleDto(adoptionReview, user.getUserNickname());
+            } else {
+                return entityToArticleDto(adoptionReview, null);
+            }
+        });
     }
 
 

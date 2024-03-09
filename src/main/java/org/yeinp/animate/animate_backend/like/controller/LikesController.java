@@ -23,29 +23,7 @@ public class LikesController {
     public int adoptionLikeCount(@PathVariable Long arNo) {
         return likesService.getLikeCount(arNo);
     }
-    
-//    @PostMapping("/adoption/review/like")
-//    public ResponseEntity<Object> insertLike(@ModelAttribute LikesDto likesDto, @RequestParam Long arNo,
-//                                                     HttpSession session){
-//        try {
-//            Long userNo = (Long) session.getAttribute("userNo");
-//            if (userNo == null) {
-//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("세션이 만료되었거나 로그인되지 않았습니다.");
-//            }
-//
-//            LikesDto existingLike = likesService.getLikeByUserAndArNo(userNo, arNo);
-//
-//
-//
-//            likesDto.setUserNo(userNo);
-//            likesDto.setArNo(arNo);
-//            likesDto.setLikeStatus('Y');
-//            int result = likesService.insertLike(likesDto);
-//            return ResponseEntity.ok("좋아요");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("좋아요 오류");
-//        }
-//    }
+
 
     @RequestMapping(value = {"/adoption/review/like"}, method = {RequestMethod.POST})
     public ResponseEntity<Object> insertLike(@ModelAttribute LikesDto likesDto, @RequestParam Long arNo, HttpSession session) {

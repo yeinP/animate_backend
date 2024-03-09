@@ -2,22 +2,19 @@ package org.yeinp.animate.animate_backend.adoption.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.yeinp.animate.animate_backend.adoption.dto.AdoptionImgDto;
-import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewDto;
-import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewReqDto;
-import org.yeinp.animate.animate_backend.adoption.dto.ImgUrlDto;
+import org.springframework.web.bind.annotation.*;
+import org.yeinp.animate.animate_backend.adoption.dto.*;
 import org.yeinp.animate.animate_backend.adoption.repository.AdoptionImgRepository;
 import org.yeinp.animate.animate_backend.adoption.repository.AdoptionRepository;
 import org.yeinp.animate.animate_backend.adoption.service.AdoptionService;
 import org.yeinp.animate.animate_backend.entity.AdoptionImg;
 import org.yeinp.animate.animate_backend.miss.dto.MissCareDto;
 
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @CrossOrigin("http://localhost:3000")
@@ -36,7 +33,6 @@ public class AdoptionReviewController {
     @GetMapping("/adoption/review/list")
     @ResponseBody
     public List<AdoptionReviewReqDto> getAdoptionReviewDtoList(){
-
         return adoptionRepository.getArList();
     }
 
@@ -45,5 +41,15 @@ public class AdoptionReviewController {
     public List<ImgUrlDto> getAdoptionImgList(){
         return adoptionService.arImgUrl();
     }
+
+    @GetMapping("/adoption/review/{arNo}")
+    public ResponseEntity<AdoptionArticleDto> getAdoptionReview(@PathVariable Long arNo) {
+        Optional<AdoptionArticleDto> adoptionArticleDtoOptional = adoptionService.getAdoptionReviewWithImages(arNo);
+
+        return adoptionArticleDtoOptional
+                .map(adoptionArticleDto -> ResponseEntity.ok().body(adoptionArticleDto))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.yeinp.animate.animate_backend.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUserIdAndUserPassword(String userId, String userPassword);
 
