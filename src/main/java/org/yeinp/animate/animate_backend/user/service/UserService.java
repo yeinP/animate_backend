@@ -7,7 +7,10 @@ public interface UserService {
 
     public void userRegister(UserDto userDto) throws Exception;
 
-    void validateDuplicate(String userId, String userNickname);
+    void validateDuplicateUserId(String userId);
+    void validateDuplicateUserNickname(String userNickname);
+
+
 
 //    default User userDtoToEntity(UserDto userDto) {
 //        User entity = User.builder().userNo(userDto.getUserNo()).userId(userDto.getUserId()).userPassword(userDto.getUserPassword()).userName(userDto.getUserName()).userStatus(userDto.getUserStatus()).userNickname(userDto.getUserNickname()).userEmail(userDto.getUserEmail()).userPhone(userDto.getUserPhone()).build();

@@ -14,7 +14,7 @@ import lombok.*;
 public class MissCareAnimal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int mcAnimalNo;
+    private Long mcAnimalNo;
 
     private String mcBreed;
     private String mcGender;

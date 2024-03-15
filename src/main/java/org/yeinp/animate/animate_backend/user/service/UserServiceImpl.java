@@ -22,7 +22,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void userRegister(UserDto userDto) throws Exception {
-        validateDuplicate(userDto.getUserId(), userDto.getUserNickname());
+        validateDuplicateUserId(userDto.getUserId());
+        validateDuplicateUserNickname(userDto.getUserNickname());
 
         String userId = userDto.getUserId();
         String userPassword = userDto.getUserPassword();
@@ -45,17 +46,22 @@ public class UserServiceImpl implements UserService {
         userRepository.save(data);
     }
 
+
     @Override
-    public void validateDuplicate(String userId, String userNickname) {
+    public void validateDuplicateUserId(String userId) {
         if(userRepository.existsByUserId(userId)){
             throw new DuplicateUserIdException();
-        }
-        if(userRepository.existsByUserNickname(userNickname)){
-            throw new DuplicateNicknameException();
         }
     }
 
 
+
+    @Override
+    public void validateDuplicateUserNickname(String userNickname) {
+        if(userRepository.existsByUserNickname(userNickname)){
+            throw new DuplicateNicknameException();
+        }
+    }
 
 
 }
