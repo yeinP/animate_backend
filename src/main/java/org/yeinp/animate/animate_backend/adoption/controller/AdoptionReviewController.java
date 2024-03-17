@@ -10,6 +10,7 @@ import org.yeinp.animate.animate_backend.adoption.repository.AdoptionImgReposito
 import org.yeinp.animate.animate_backend.adoption.repository.AdoptionRepository;
 import org.yeinp.animate.animate_backend.adoption.service.AdoptionService;
 import org.yeinp.animate.animate_backend.entity.AdoptionImg;
+import org.yeinp.animate.animate_backend.home.dto.HomeARDto;
 import org.yeinp.animate.animate_backend.miss.dto.MissCareDto;
 
 import java.nio.file.Path;
@@ -35,6 +36,8 @@ public class AdoptionReviewController {
     public List<AdoptionReviewReqDto> getAdoptionReviewDtoList(){
         return adoptionRepository.getArList();
     }
+
+
 
     @GetMapping("/adoption/review/imgList")
     @ResponseBody

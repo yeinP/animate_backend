@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
@@ -17,7 +16,7 @@ public class MissCareDto {
     private int mcStatus;
     private Long userNo;
     private String mcLoc;
-    private int mcAnimalNo;
+    private Long mcAnimalNo;
     private String mcBreed;
     private String mcGender;
     private int mcAge;
@@ -26,4 +25,22 @@ public class MissCareDto {
     private String mcChar;
     private String mcEtc;
     private String mcImgUrl;
+
+    public MissCareDto(Long mcNo, String mcAddr, Timestamp mcRegdate, int mcStatus, Long userNo, String mcLoc, Long mcAnimalNo, String mcBreed, String mcGender, int mcAge, int mcWeight, String mcColor, String mcChar, String mcEtc, String mcImgUrl) {
+        this.mcNo = mcNo;
+        this.mcAddr = mcAddr;
+        this.mcRegdate = mcRegdate;
+        this.mcStatus = mcStatus;
+        this.userNo = userNo;
+        this.mcLoc = mcLoc;
+        this.mcAnimalNo = mcAnimalNo;
+        this.mcBreed = mcBreed;
+        this.mcGender = mcGender;
+        this.mcAge = mcAge;
+        this.mcWeight = mcWeight;
+        this.mcColor = mcColor;
+        this.mcChar = mcChar;
+        this.mcEtc = mcEtc;
+        this.mcImgUrl = mcImgUrl;
+    }
 }
