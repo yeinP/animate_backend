@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.yeinp.animate.animate_backend.adoption.dto.AdoptionReviewDto;
@@ -64,10 +65,21 @@ public class AwsS3ArController {
         }
     }
 
-    @DeleteMapping("/delete/arImg" +
-            "")
+    @DeleteMapping("/delete/arImg")
     public ResponseEntity<?> deleteFile(@RequestParam("fileName") String fileName){
+        String[] fileNames = fileName.split(",");
+
+        for (String name : fileNames) {
+            awsS3ArService.deleteFiles(name.trim()); // 파일 이름 앞뒤의 공백 제거
+        }
         return ResponseEntity.ok(awsS3ArService.deleteFiles(fileName));
+    }
+
+    @PostMapping("/adoption/delete/{arNo}")
+    @ResponseBody
+    @Transactional
+    public void deleteAdoption(@PathVariable Long arNo){
+        adoptionService.removeReview(arNo);
     }
 
 

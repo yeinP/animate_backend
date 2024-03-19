@@ -34,6 +34,7 @@ public interface MissService {
                 mcStatus(missCareDto.getMcStatus()).
                 userNo(missCareDto.getUserNo()).
                 mcLoc(missCareDto.getMcLoc()).
+                mcLoc2(missCareDto.getMcLoc2()).
                 build();
         return entity;
     }

@@ -24,6 +24,7 @@ public class MissCare {
     private int mcStatus;
     private Long userNo;
     private String mcLoc;
+    private String mcLoc2;
 
     @OneToMany(mappedBy = "missCare", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MissCareImg> missCareImgList;

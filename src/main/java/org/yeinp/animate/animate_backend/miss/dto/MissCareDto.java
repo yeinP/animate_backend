@@ -16,6 +16,7 @@ public class MissCareDto {
     private int mcStatus;
     private Long userNo;
     private String mcLoc;
+    private String mcLoc2;
     private Long mcAnimalNo;
     private String mcBreed;
     private String mcGender;
@@ -26,13 +27,14 @@ public class MissCareDto {
     private String mcEtc;
     private String mcImgUrl;
 
-    public MissCareDto(Long mcNo, String mcAddr, Timestamp mcRegdate, int mcStatus, Long userNo, String mcLoc, Long mcAnimalNo, String mcBreed, String mcGender, int mcAge, int mcWeight, String mcColor, String mcChar, String mcEtc, String mcImgUrl) {
+    public MissCareDto(Long mcNo, String mcAddr, Timestamp mcRegdate, int mcStatus, Long userNo, String mcLoc, String mcLoc2, Long mcAnimalNo, String mcBreed, String mcGender, int mcAge, int mcWeight, String mcColor, String mcChar, String mcEtc, String mcImgUrl) {
         this.mcNo = mcNo;
         this.mcAddr = mcAddr;
         this.mcRegdate = mcRegdate;
         this.mcStatus = mcStatus;
         this.userNo = userNo;
         this.mcLoc = mcLoc;
+        this.mcLoc2 = mcLoc2;
         this.mcAnimalNo = mcAnimalNo;
         this.mcBreed = mcBreed;
         this.mcGender = mcGender;

@@ -1,10 +1,9 @@
 package org.yeinp.animate.animate_backend.adoption.service;
 
+import org.springframework.http.ResponseEntity;
 import org.yeinp.animate.animate_backend.adoption.dto.*;
 import org.yeinp.animate.animate_backend.entity.AdoptionImg;
 import org.yeinp.animate.animate_backend.entity.AdoptionReview;
-import org.yeinp.animate.animate_backend.entity.MissCareImg;
-import org.yeinp.animate.animate_backend.miss.dto.MissCareImgDto;
 
 
 import java.sql.Timestamp;
@@ -20,6 +19,8 @@ public interface AdoptionService {
 
     List<ImgUrlDto> arImgUrl();
     Optional<AdoptionArticleDto> getAdoptionReviewWithImages(Long arNo);
+
+    void removeReview(Long arNo);
 
 
     default ImgUrlDto entityToImgUrlDto(AdoptionImg adoptionImg){

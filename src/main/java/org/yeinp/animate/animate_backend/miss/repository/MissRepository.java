@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface MissRepository extends JpaRepository<MissCare, Long> {
     @Query("SELECT new org.yeinp.animate.animate_backend.miss.dto.MissCareDto(" +
-            "m.mcNo, m.mcAddr, m.mcRegdate, m.mcStatus, m.userNo, m.mcLoc, " +
+            "m.mcNo, m.mcAddr, m.mcRegdate, m.mcStatus, m.userNo, m.mcLoc, m.mcLoc2, " +
             "a.mcAnimalNo, a.mcBreed, a.mcGender, a.mcAge, a.mcWeight, " +
             "a.mcColor, a.mcChar, a.mcEtc, i.mcImgUrl) " +
             "FROM MissCare m " +

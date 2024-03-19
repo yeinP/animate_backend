@@ -1,6 +1,7 @@
 package org.yeinp.animate.animate_backend.adoption.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.yeinp.animate.animate_backend.adoption.dto.*;
 import org.yeinp.animate.animate_backend.adoption.repository.AdoptionImgRepository;
@@ -64,6 +65,11 @@ public class AdoptionServiceImpl implements AdoptionService{
                 return entityToArticleDto(adoptionReview, null);
             }
         });
+    }
+
+    @Override
+    public void removeReview(Long arNo) {
+        adoptionRepository.deleteById(arNo);
     }
 
 
